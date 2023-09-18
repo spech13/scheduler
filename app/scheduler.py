@@ -1,10 +1,9 @@
 import threading
-
-from datetime import datetime, timedelta
+from datetime import datetime
 from time import sleep
 
 
-class Scheduling:
+class Scheduler:
     def __init__(self, tasks=[]):
         self.tasks = tasks
 
@@ -34,18 +33,3 @@ class Scheduling:
             return wrapp
 
         return wrapper
-
-
-@Scheduling.scheduling_decorator(datetime.now() + timedelta(seconds=5))
-def notification_about_train():
-    print("You have a train")
-
-
-@Scheduling.scheduling_decorator(datetime(2023, 9, 17, 17, 46, 0))
-def notification_about_doctor():
-    print("You have an appointment with a doctor though 30 minutes")
-
-
-scheduling = Scheduling()
-scheduling.extend_tasks((notification_about_doctor, notification_about_train))
-scheduling.delay()
