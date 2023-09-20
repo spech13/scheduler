@@ -1,34 +1,67 @@
 import threading
-from datetime import datetime
+from datetime import datetime, timedelta
 from time import sleep
 
 
 class Scheduler:
-    def __init__(self, tasks=[]):
-        self.tasks = tasks
+    class Task:
+        def __init__(self, task, args):
+            self.task = task
+            self.args = args
 
-    def append_task(self, task):
-        self.tasks.append(task)
+    def __init__(self):
+        self.tasks = []
 
-    def extend_tasks(self, tasks):
-        self.tasks.extend(tasks)
+    def append_task(self, task, args):
+        self.tasks.append(self.Task(task, args))
+
+    def extend_tasks(self, task_list):
+        self.tasks.extend(self.Task(task[0], task[1]) for task in task_list)
 
     def delay(self):
         for task in self.tasks:
-            threading.Thread(target=task).start()
+            threading.Thread(target=task.task, args=task.args).start()
 
     @staticmethod
-    def scheduling_decorator(date):
+    def scheduling_decorator(date, repeat=None, max_retry=None, stop=None):
+        now = datetime.now()
+
+        if type(date) is not datetime:
+            raise ValueError("parametr date must be datetime")
+
+        if repeat and type(repeat) is not timedelta:
+            raise ValueError("parametr repeat must be timedelta")
+
+        if stop and type(stop) is not datetime:
+            raise ValueError("parametr stop must be datetime")
+
+        if max_retry and type(max_retry) is not int:
+            raise ValueError("parametr max_retry must be int")
+
+        if stop and stop < date:
+            raise ValueError("parametr stop must be after date")
+
         def wrapper(func):
             def wrapp(*args, **kwargs):
-                now = datetime.now()
+                if now > date:
+                    raise ValueError(f"You late for {date}")
 
-                if now <= date:
-                    sleep((date - now).total_seconds())
+                sleep((date - now).total_seconds())
+
+                if repeat:
+                    count_retry = 0
+                    while True:
+                        func(*args, **kwargs)
+                        count_retry += 1
+                        sleep(repeat.total_seconds())
+
+                        if max_retry and max_retry == count_retry:
+                            break
+
+                        if stop and datetime.now() + repeat > stop:
+                            break
                 else:
-                    raise ValueError("You late")
-
-                return func(*args, **kwargs)
+                    func(*args, **kwargs)
 
             return wrapp
 
