@@ -1,8 +1,8 @@
 # scheduler
 Scheduler class for invoking of methods in specific time
 
-<pre>
 description:
+<pre>
     fields:
         tasks - list tasks of type Task
     methods:
@@ -23,14 +23,21 @@ description:
                 stop - stop date of target method
 </pre>
 
-necessary: installed git and python
+necessary:
+<pre>
+installed git and python
+</pre>
 
 preparation:
+<pre>
 1. execute command: git clone https://github.com/spech13/scheduler.git
 2. go to "shceduler/app" directory
 3. execute command: python main.py
+</pre>
 
 verifying:
+<pre>
 1. Notification about exam will be show ten second later and repeat five second six time
 2. Notification about interview will be show twenty second later and repeat ten second two time
 3. The calculation of the gravitational force between the earth and the moon will be output after five seconds once
+</pre>
