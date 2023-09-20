@@ -1,8 +1,6 @@
 # scheduler
 Scheduler class for invoking of methods in specific time
 
-<span style="color: red">aaa</span>
-
 description:
 <pre>
 fields:
