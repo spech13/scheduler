@@ -1,9 +1,11 @@
 # scheduler
 Scheduler class for invoking of methods in specific time
 
+<span style="color: red">aaa</span>
+
 description:
 <pre>
-<span style="color:blue">fields:</span>
+fields:
     tasks - list tasks of type Task
 methods:
     append_task - add task in tasks list
