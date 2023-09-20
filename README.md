@@ -3,24 +3,24 @@ Scheduler class for invoking of methods in specific time
 
 description:
 <pre>
-    fields:
-        tasks - list tasks of type Task
-    methods:
-        append_task - add task in tasks list
-            args:
-                task - target method
-                args - method args
-        extend_tasks - extend tasks in list tasks
-            args:
-                tasks - a list of tasks consisting of tuples where the first element of the tuple is the target method, and the second is a tuple of its arguments
-        delay - causes tasks to run asynchronously
-    decorator:
-        scheduling_decorator - assigns a task execution time, repetition interval, and execution stop time
-            args:
-                date - execution date of target method
-                repeat - repeat interval
-                max_retry - number of repetitions
-                stop - stop date of target method
+fields:
+    tasks - list tasks of type Task
+methods:
+    append_task - add task in tasks list
+        args:
+            task - target method
+            args - method args
+    extend_tasks - extend tasks in list tasks
+        args:
+            tasks - a list of tasks consisting of tuples where the first element of the tuple is the target method, and the second is a tuple of its arguments
+    delay - causes tasks to run asynchronously
+decorator:
+    scheduling_decorator - assigns a task execution time, repetition interval, and execution stop time
+        args:
+            date - execution date of target method
+            repeat - repeat interval
+            max_retry - number of repetitions
+            stop - stop date of target method
 </pre>
 
 necessary:
