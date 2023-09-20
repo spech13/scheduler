@@ -3,7 +3,7 @@ Scheduler class for invoking of methods in specific time
 
 description:
 <pre>
-<span style="color=blue">fields:</span>
+<span style="color:blue">fields:</span>
     tasks - list tasks of type Task
 methods:
     append_task - add task in tasks list
