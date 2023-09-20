@@ -1,5 +1,25 @@
 # scheduler
-Scheduler class for invoking of methods in specific day
+Scheduler class for invoking of methods in specific time
+
+description:
+    fields:
+        tasks - list tasks of type Task
+    methods:
+        append_task - add task in tasks list
+            args:
+                task - target method
+                args - method args
+        extend_tasks - extend tasks in list tasks
+            args:
+                tasks - a list of tasks consisting of tuples where the first element of the tuple is the target method, and the second is a tuple of its arguments
+        delay - causes tasks to run asynchronously
+    decorator:
+        scheduling_decorator - assigns a task execution time, repetition interval, and execution stop time
+            args:
+                date - execution date of target method
+                repeat - repeat interval
+                max_retry - number of repetitions
+                stop - stop date of target method
 
 necessary: installed git and python
 
@@ -9,7 +29,6 @@ preparation:
 3. execute command: python main.py
 
 verifying:
-1. You will see two messages: "You have a train" and "You have an appointment with a doctor though 30 minutes"
-2. "You have a train" message will be show five seconds later
-3. "You have an appointment with a doctor though 30 minutes" message will be show in that momemt, which specified in decorator params
-4. If you saw "You late" message, you need change date in decorator params of method "notification_about_doctor" to more after than now
+1. Notification about exam will be show ten second later and repeat five second six time
+2. Notification about interview will be show twenty second later and repeat ten second two time
+3. The calculation of the gravitational force between the earth and the moon will be output after five seconds once
