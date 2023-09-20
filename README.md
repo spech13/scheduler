@@ -1,7 +1,7 @@
 # scheduler
 Scheduler class for invoking of methods in specific time
 
-<p>
+<pre>
 description:
     fields:
         tasks - list tasks of type Task
@@ -21,7 +21,7 @@ description:
                 repeat - repeat interval
                 max_retry - number of repetitions
                 stop - stop date of target method
-</p>
+</pre>
 
 necessary: installed git and python
 
